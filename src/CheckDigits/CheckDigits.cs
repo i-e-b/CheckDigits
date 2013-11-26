@@ -4,7 +4,8 @@ using System.Text;
 
 namespace CheckDigits
 {
-    public class CheckDigits
-    {
-    }
+	public static class CheckDigits
+	{
+		public static GridChecker GRid { get { return new GridChecker(); } }
+	}
 }

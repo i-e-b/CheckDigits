@@ -35,6 +35,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CheckDigits.cs" />
+    <Compile Include="GridChecker.cs" />
+    <Compile Include="IProduceChecksum.cs" />
+    <Compile Include="Iso7064.cs" />
+    <Compile Include="IValidate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
