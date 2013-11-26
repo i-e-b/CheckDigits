@@ -38,8 +38,8 @@ namespace CheckDigits
 				var sj = (s == 36) ? (36) : (s % 36);
 				p = (2 * sj) % 37;
 			}
-
-			return string.Concat(lookup[37 - p]);
+			
+			return string.Concat(lookup[(37 - p) % 36]);
 		}
 	}
 }
