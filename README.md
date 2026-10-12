@@ -12,4 +12,5 @@ var ok = CheckDigits.GRid.IsValid("A1-2425G-ABC1234002-M");
 ```
 
 - GridChecker: For IFPI GRid codes ( https://www.ifpi.org/resource/grid/ )
-- ISO 7064: 
+- ISO 7064: (not exposed yet)
+- 

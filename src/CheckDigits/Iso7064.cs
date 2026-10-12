@@ -3,17 +3,20 @@ using System.Linq;
 
 namespace CheckDigits
 {
+	/// <summary>
+	/// IS0 7064 standardised check digits
+	/// </summary>
 	public class Iso7064
 	{
-		public const string NumericCharSet = "0123456789";
-		public const string Mod112CharSet = "0123456789X";
-		public const string HexCharSet = "0123456789ABCDEF";
-		public const string AlphaCharSet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-		public const string AlphanumericCharSet = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-		public const string Mod372CharSet = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ*";
+		private const string NumericCharSet = "0123456789";
+		private const string Mod112CharSet = "0123456789X";
+		private const string HexCharSet = "0123456789ABCDEF";
+		private const string AlphaCharSet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+		private const string AlphanumericCharSet = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+		private const string Mod372CharSet = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ*";
 
 
-		public static void GetCheckDigitRadixAndModulus(string charSet, bool doubleDigit, out int radix, out int modulus)
+		private static void GetCheckDigitRadixAndModulus(string charSet, bool doubleDigit, out int radix, out int modulus)
 		{
 			radix = charSet.Length;
 			modulus = radix + 1;
@@ -55,7 +58,7 @@ namespace CheckDigits
 		} 
 
 		//http://www.codeproject.com/Articles/16540/Error-Detection-Based-on-Check-Digit-Schemes
-		public static string CalculateHybridSystemCheckDigit(string value, string charSet)
+		private static string? CalculateHybridSystemCheckDigit(string value, string charSet)
 		{
 			if (string.IsNullOrEmpty(value)) throw new ArgumentException("Null value provided", "value");
 			if (string.IsNullOrEmpty(charSet)) throw new ArgumentException("Null charSet provided", "charSet");
@@ -91,7 +94,7 @@ namespace CheckDigits
 		}
 
 		//https://github.com/danieltwagner/iso7064.
-		public static string PureSystemDigit(string value, int radix, int modulus, string charSet, bool doubleDigit)
+		private static string PureSystemDigit(string value, int radix, int modulus, string charSet, bool doubleDigit)
 		{
 			if (string.IsNullOrEmpty(value)) throw new ArgumentException("Null value provided", "value");
 			if (string.IsNullOrEmpty(charSet)) throw new ArgumentException("Null charSet provided", "charSet");
