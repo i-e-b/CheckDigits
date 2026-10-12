@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace CheckDigits
+namespace CheckDigits.Internal
 {
 	/// <summary>
 	/// IS0 7064 standardised check digits

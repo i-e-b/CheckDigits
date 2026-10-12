@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace CheckDigits;
+namespace CheckDigits.Internal;
 
 /// <summary>
 /// IFPI GRid codes
