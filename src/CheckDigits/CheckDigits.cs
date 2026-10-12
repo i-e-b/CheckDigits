@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace CheckDigits
+﻿namespace CheckDigits
 {
 	public static class CheckDigits
 	{
-		public static GridChecker GRid { get { return new GridChecker(); } }
+		public static GridChecker GRid => new GridChecker();
 	}
 }

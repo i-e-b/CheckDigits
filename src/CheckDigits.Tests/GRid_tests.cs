@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+// ReSharper disable InconsistentNaming
 
 namespace CheckDigits.Tests
 {
@@ -18,7 +19,6 @@ namespace CheckDigits.Tests
 			Assert.That(result, Is.True, "Did not pass a valid GRid");
 		}
 
-		
 		[Test]
 		[TestCase("A12425GABC1234002X")] // bad check digit
 		[TestCase("XX2425GABC1234002M")] // bad identifier
@@ -28,6 +28,17 @@ namespace CheckDigits.Tests
 			var result = CheckDigits.GRid.IsValid(grid);
 
 			Assert.That(result, Is.False, "Passed an invalid GRid");
+		}
+
+		[Test]
+		[TestCase("A12425GABC1234002", "A12425GABC1234002M")]
+		[TestCase("A12589KCCC2586482", "A12589KCCC2586482V")]
+		[TestCase("A1134344343434434", "A11343443434344344")]
+		public void generate_checksum(string baseCode, string expectedSum)
+		{
+			var actual = CheckDigits.GRid.Checksum(baseCode);
+
+			Assert.That(actual, Is.EqualTo(expectedSum));
 		}
 	}
 }

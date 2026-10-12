@@ -1,45 +1,48 @@
+using System.Collections.Generic;
 using System.Linq;
 
 namespace CheckDigits
 {
 	public class GridChecker : IValidate, IProduceChecksum
 	{
-		const string lookup = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+		private const string Lookup = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-		/// <summary>
-		/// Returns true for valid GRids, false otherwise
-		/// </summary>
+		/// <inheritdoc />
 		public bool IsValid(string grid)
 		{
 			var input = grid.ToUpperInvariant();
 			var skip = (input.StartsWith("GRID:")) ? (5) : (0);
 
-			var a = input.Skip(skip).Where(lookup.Contains).ToArray();
-			var b = string.Concat(a.Take(17));
-			var c = string.Concat(a.Last());
+			var a = input.Skip(skip).Where(Lookup.Contains).ToArray();
+			var b = a.Take(17);
+			var c = a.Last();
 
 			if (a.Length != 18) return false;
 
-			var x = Checksum(b);
-			return c ==x;
+			var x = CheckDigit(b);
+			return c == x;
 		}
 
-		/// <summary>
-		/// This is the algorithm EXACTLY as prescribed by the IFPI
-		/// </summary>
-		public string Checksum(string input)
+		private static char CheckDigit(IEnumerable<char> input)
 		{
-			int p = 36;
+			// This is the algorithm EXACTLY as prescribed by the IFPI
+			var p  = 36;
 			var ip = input.ToArray();
 
 			foreach (var a in ip)
 			{
-				var s = p + (lookup.IndexOf(a));
+				var s  = p + (Lookup.IndexOf(a));
 				var sj = (s == 36) ? (36) : (s % 36);
 				p = (2 * sj) % 37;
 			}
-			
-			return string.Concat(lookup[(37 - p) % 36]);
+
+			return Lookup[(37 - p) % 36];
+		}
+
+		/// <inheritdoc />
+		public string Checksum(string input)
+		{
+			return input + CheckDigit(input);
 		}
 	}
 }
